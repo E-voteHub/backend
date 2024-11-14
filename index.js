@@ -6,16 +6,17 @@ import models from "./src/model/Schemas.js"
 dotenv.config()
 const app = express()
 const port = process.env.PORT;
-const {User, Vote} = models
+const {User, Vote,ResVote} = models
 
 // Example usage
-const newUser = new User({ Email: 'test@example.com', Password: 'password123', isAdmin: false });
+const newUser = new User({ Email: 'test1@example.com', Password: 'password123', isAdmin: false , userId: 999 });
 newUser.save().then(() => console.log('User saved!')).catch(err => console.error(err));
 
-const newVote = new Vote({ Name: 'John Doe' });
-newVote.save().then(() => console.log('Vote saved!')).catch(err => console.error(err));
+// const newVote = new Vote({ Name: 'John Doe' });
+// newVote.save().then(() => console.log('Vote saved!')).catch(err => console.error(err));
 
-
+//const newRegister = RegitrationForVoteSchema
+User.find({ userId: 999 }) .then(votes => { console.log('Data:', votes); }) .catch(err => { console.error('Error finding votes:', err); });
 // Parse application/json
 app.use(express.json());
 
